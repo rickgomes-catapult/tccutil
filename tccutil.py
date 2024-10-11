@@ -215,6 +215,7 @@ def verbose_output(*args):
 def list_clients():
     """List items in the database."""
     open_database()
+    print(f"Running SELECT client from access WHERE service is '{service}'")
     c.execute(f"SELECT client from access WHERE service is '{service}'")
     verbose_output("Fetching Entries from Database...\n")
     for row in c.fetchall():
