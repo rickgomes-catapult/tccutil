@@ -21,9 +21,23 @@ import hashlib
 from platform import mac_ver
 from packaging.version import Version as version
 
+
+def display_help(error_code=None):
+    """Display help an usage."""
+    parser.print_help()
+    if error_code is not None:
+        sys.exit(error_code)
+    print(f"{util_name} {util_version}")
+    sys.exit(0)
+
 # Utility Name
 util_name = os.path.basename(sys.argv[0])
 default_service = sys.argv[1]
+
+if default_service not in ['kTCCServiceAccessibility', 'kTCCServiceAutomation', 'kTCCServiceSystemPolicyAllFiles']:
+    print("Error:")
+    print("  No service argument supplied.\n")
+    display_help(3)
 
 # Utility Version
 util_version = '1.5.0'
@@ -39,10 +53,6 @@ sudo = True if os.getuid() == 0 else False
 
 # Default Verbosity
 verbose = False
-
-if default_service == "":
-    # TCC Service
-    default_service = "kTCCServiceAccessibility"
 
 parser = argparse.ArgumentParser(description='Modify Accesibility Preferences')
 parser.add_argument(
@@ -171,15 +181,6 @@ def open_database(digest=False):
     except TypeError:
         print("Error opening Database.  You probably need to disable SIP for this to work.", file=sys.stderr)
         sys.exit(1)
-
-
-def display_help(error_code=None):
-    """Display help an usage."""
-    parser.print_help()
-    if error_code is not None:
-        sys.exit(error_code)
-    print(f"{util_name} {util_version}")
-    sys.exit(0)
 
 
 def close_database():
@@ -323,7 +324,7 @@ def disable(client):
 def main():
     """Run the main function."""
     # If no arguments are specified, show help menu and exit.
-    if not sys.argv[1:]:
+    if not sys.argv[2:]:
         print("Error:")
         print("  No arguments.\n")
         display_help(2)
