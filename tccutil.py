@@ -23,6 +23,7 @@ from packaging.version import Version as version
 
 # Utility Name
 util_name = os.path.basename(sys.argv[0])
+default_service = sys.argv[1]
 
 # Utility Version
 util_version = '1.5.0'
@@ -39,8 +40,9 @@ sudo = True if os.getuid() == 0 else False
 # Default Verbosity
 verbose = False
 
-# TCC Service
-default_service = "kTCCServiceAccessibility"
+if default_service == "":
+    # TCC Service
+    default_service = "kTCCServiceAccessibility"
 
 parser = argparse.ArgumentParser(description='Modify Accesibility Preferences')
 parser.add_argument(
