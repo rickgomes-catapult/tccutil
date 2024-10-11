@@ -60,7 +60,7 @@ parser.add_argument(
 )
 parser.add_argument(
     '--service', '-s',
-    action='store_true', default="kTCCServiceAccessibility",
+    default="kTCCServiceAccessibility",
     help="Set TCC service"
 )
 
