@@ -21,6 +21,7 @@ import hashlib
 from platform import mac_ver
 from packaging.version import Version as version
 
+parser = argparse.ArgumentParser(description='Modify Security Preferences')
 
 def display_help(error_code=None):
     """Display help an usage."""
@@ -54,7 +55,7 @@ sudo = True if os.getuid() == 0 else False
 # Default Verbosity
 verbose = False
 
-parser = argparse.ArgumentParser(description='Modify Accesibility Preferences')
+
 parser.add_argument(
     'action',
     metavar='ACTION',
