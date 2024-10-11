@@ -32,14 +32,7 @@ def display_help(error_code=None):
     sys.exit(0)
 
 # Utility Name
-print(sys.argv)
 util_name = os.path.basename(sys.argv[0])
-default_service = sys.argv[1]
-
-if default_service not in ["kTCCServiceAccessibility", "kTCCServiceAutomation", "kTCCServiceSystemPolicyAllFiles"]:
-    print("Error:")
-    print("  No service argument supplied.\n")
-    display_help(3)
 
 # Utility Version
 util_version = '1.5.0'
@@ -67,7 +60,7 @@ parser.add_argument(
 )
 parser.add_argument(
     '--service', '-s',
-    default=default_service,
+    action='store_true',
     help="Set TCC service"
 )
 
