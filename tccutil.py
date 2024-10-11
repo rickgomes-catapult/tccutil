@@ -32,10 +32,11 @@ def display_help(error_code=None):
     sys.exit(0)
 
 # Utility Name
+print(sys.argv)
 util_name = os.path.basename(sys.argv[0])
 default_service = sys.argv[1]
 
-if default_service not in ['kTCCServiceAccessibility', 'kTCCServiceAutomation', 'kTCCServiceSystemPolicyAllFiles']:
+if default_service not in ["kTCCServiceAccessibility", "kTCCServiceAutomation", "kTCCServiceSystemPolicyAllFiles"]:
     print("Error:")
     print("  No service argument supplied.\n")
     display_help(3)
