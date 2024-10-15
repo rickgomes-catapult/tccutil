@@ -71,6 +71,18 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    '-c2',
+    default="UNUSED",
+    help="Set Application to control csreq"
+)
+
+parser.add_argument(
+    '-c1',
+    default="UNUSED",
+    help="Set Application csreq"
+)
+
+parser.add_argument(
     '--list', '-l', action='store_true',
     help="List all entries in the accessibility database"
 )
@@ -256,7 +268,7 @@ def insert_client(client):
     # Sonoma
     if osx_version >= version('14.0'):
         try:
-          c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,NULL,NULL,0,'{app}',NULL,0, NULL, NULL, NULL,'UNUSED', NULL)")
+          c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,'{csreq1}',NULL,0,'{app}','{csreq2}',0, NULL, NULL, NULL,'UNUSED', NULL)")
         except sqlite3.OperationalError:
           print("Attempting to write a readonly database.  You probably need to disable SIP.", file=sys.stderr)
     # Big Sur and later
@@ -357,6 +369,10 @@ def main():
     service = args.service
     global app
     app = args.app
+    global csreq1
+    csreq1 = args.c1
+    global csreq2
+    csreq2 = args.c2
 
     if args.verbose:
         # If verbose option is set, set verbose to True and remove all verbose arguments.
