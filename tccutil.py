@@ -72,13 +72,13 @@ parser.add_argument(
 
 parser.add_argument(
     '-c2',
-    default="UNUSED",
+    default="NULL",
     help="Set Application to control csreq"
 )
 
 parser.add_argument(
     '-c1',
-    default="UNUSED",
+    default="NULL",
     help="Set Application csreq"
 )
 
