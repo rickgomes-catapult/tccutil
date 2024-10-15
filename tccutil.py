@@ -256,13 +256,13 @@ def insert_client(client):
     # Sonoma
     if osx_version >= version('14.0'):
         try:
-          c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,4,1,NULL,NULL,0,'{app}',NULL,0, NULL, NULL, NULL,'UNUSED', NULL)")
+          c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,NULL,NULL,0,'{app}',NULL,0, NULL)")
         except sqlite3.OperationalError:
           print("Attempting to write a readonly database.  You probably need to disable SIP.", file=sys.stderr)
     # Big Sur and later
     elif osx_version >= version('10.16'):
         try:
-          c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,4,1,NULL,NULL,0,'{app}',NULL,0,0)")
+          c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,NULL,NULL,0,'{app}',NULL,0,0)")
         except sqlite3.OperationalError:
           print("Attempting to write a readonly database.  You probably need to disable SIP.", file=sys.stderr)
     # Mojave through Big Sur
