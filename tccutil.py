@@ -233,7 +233,7 @@ def verbose_output(*args):
 def list_clients():
     """List items in the database."""
     open_database()
-    print(f"Running SELECT client from access WHERE service is '{service}'")
+    # print(f"Running SELECT client from access WHERE service is '{service}'")
     c.execute(f"SELECT client from access WHERE service is '{service}'")
     verbose_output("Fetching Entries from Database...\n")
     for row in c.fetchall():
@@ -268,7 +268,7 @@ def insert_client(client):
     # Sonoma
     if osx_version >= version('14.0'):
         try:
-          print(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,{csreq1},NULL,0,'{app}',{csreq2},0, NULL, NULL, NULL,'UNUSED', NULL)")
+          # print(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,{csreq1},NULL,0,'{app}',{csreq2},0, NULL, NULL, NULL,'UNUSED', NULL)")
           c.execute(f"INSERT or REPLACE INTO access VALUES('{service}','{client}',{client_type},2,3,1,{csreq1},NULL,0,'{app}',{csreq2},0, NULL, NULL, NULL,'UNUSED', NULL)")
         except sqlite3.OperationalError:
           print("Attempting to write a readonly database.  You probably need to disable SIP.", file=sys.stderr)
